@@ -9,7 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 
 
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
@@ -26,6 +26,7 @@ public class WheelOfFortuneTest {
     public void initializationTest(){
         wheelOfFortuneGame.initializeRound();
         assertNotNull(wheelOfFortuneGame.currentRound);
+        assertEquals(wheelOfFortuneGame.currentRound.getPlayers().get(0).getName(),"Player 1");
 
     }
 
@@ -40,6 +41,6 @@ public class WheelOfFortuneTest {
     public void testDetermineWinner(){
         assertNotNull(wheelOfFortuneGame);
         Object player = wheelOfFortuneGame.determineWinner();
-,       assertNotNull(player);
+       assertNotNull(player);
     }
 }
