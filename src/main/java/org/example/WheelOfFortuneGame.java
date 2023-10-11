@@ -36,7 +36,6 @@ public class WheelOfFortuneGame {
 
     }
 
-    //Smolnikov
     public WheelSector spinWheel() {
         Random random = new Random();
         int randomIndex = random.nextInt(currentRound.getWheel().size());
@@ -54,7 +53,7 @@ public class WheelOfFortuneGame {
         return winner;
     }
 
-    private boolean handleSectorAction(WheelSector sector, Player currentPlayer) {
+    public boolean handleSectorAction(WheelSector sector, Player currentPlayer) {
         String sectorName = sector.getName();
         int points = sector.getPoints();
         Scanner scanner = new Scanner(System.in);
@@ -66,6 +65,7 @@ public class WheelOfFortuneGame {
                 System.out.println("Вы можете либо продолжить игру, либо взять приз.");
                 System.out.print("Введите 'Продолжить' или 'Взять приз': ");
                 String choice = scanner.nextLine();
+
                 if (choice.equalsIgnoreCase("Взять приз")) {
                     System.out.println("Приз взят, игра продолжается");
                 }
