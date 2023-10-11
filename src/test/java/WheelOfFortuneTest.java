@@ -1,17 +1,8 @@
-import org.example.Player;
 import org.example.WheelOfFortuneGame;
-import org.example.WheelSector;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class WheelOfFortuneTest {
 
@@ -43,4 +34,44 @@ public class WheelOfFortuneTest {
         Object player = wheelOfFortuneGame.determineWinner();
        assertNotNull(player);
     }
+
+
+    ////////////////////////////////////////////////////////////////
+    @Test
+    public void testHandleKeySectorCorrectKey() {
+        // Предполагаем, что верный ключ - 3
+        assertTrue(wheelOfFortuneGame.handleKeySector(3));
+    }
+
+    @Test
+    public void testHandleKeySectorIncorrectKey() {
+        // Предполагаем, что верный ключ - 3
+        assertFalse(wheelOfFortuneGame.handleKeySector(5));
+    }
+
+    @Test
+    public void testIsLetterOpenedCorrectLetter() {
+        // Предполагаем, что слово "example" и текущий шаблон "*******"
+        wheelOfFortuneGame.currentRound.setEncodedWord("example");
+        wheelOfFortuneGame.currentRound.setCurrentPattern("*******");
+
+        // Проверяем, что буква 'a' открывается в слове
+        assertTrue(wheelOfFortuneGame.isLetterOpened('a'));
+
+        // Проверяем, что текущий шаблон обновляется
+        assertEquals("****a**", wheelOfFortuneGame.currentRound.getCurrentPattern());
+    }
+
+    @Test
+    public void testIsLetterOpenedIncorrectLetter() {
+        wheelOfFortuneGame.currentRound.setEncodedWord("example");
+        wheelOfFortuneGame.currentRound.setCurrentPattern("*******");
+
+        // Проверяем, что буква 'b' не открывается в слове
+        assertFalse(wheelOfFortuneGame.isLetterOpened('b'));
+
+        // Проверяем, что текущий шаблон остается без изменений
+        assertEquals("*******", wheelOfFortuneGame.currentRound.getCurrentPattern());
+    }
 }
+
