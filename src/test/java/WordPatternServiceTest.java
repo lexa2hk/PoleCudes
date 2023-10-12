@@ -10,7 +10,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class WordPatternServiceTest {
 
     @Test
-    public void letterGuessTest() {
+    public void shouldRevealLetterInPattern() {
+        // Как разработчик, который реализует программный продукт,
+        // я хочу, чтобы функция revealLetter корректно раскрывала букву в шаблоне,
+        // для того чтобы пользователь мог угадать слово.
+
+
         String encoded = "Testing";
         String pattern = "*******";
         char letter = 't';
@@ -25,13 +30,16 @@ public class WordPatternServiceTest {
 
         pattern = WordPatternService.revealLetter(encoded, pattern, 's');
         assertEquals("test***", pattern);
-
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"string", "dog", "testing"})
-    public void wordGuessTest(String word) {
-        assertTrue(WordPatternService.tryGuessWord(word,word));
-        assertFalse(WordPatternService.tryGuessWord(null,word));
+    public void shouldTryGuessWord(String word) {
+        // Как разработчик, который реализует программный продукт,
+        // я хочу, чтобы функция tryGuessWord проверяла угаданное слово,
+        // для того чтобы пользователь мог проверить свои догадки.
+
+        assertTrue(WordPatternService.tryGuessWord(word, word));
+        assertFalse(WordPatternService.tryGuessWord(null, word));
     }
 }
